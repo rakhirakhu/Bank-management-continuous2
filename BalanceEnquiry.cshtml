@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Bank_Management.Models.BalanceEnquiryModel>
+
+@{
+    ViewBag.Title = "BalanceEnquiry";
+    Layout = "~/Views/Shared/_Layoutuser.cshtml";
+}
+
+@*<link href="~/Content/Balance.css" rel="stylesheet" />*@
+<link href="~/CSS/BalanceEnquiry.css" rel="stylesheet" />
+<div id="main-content" class="container">
+    <div class="text-center">
+        <h4>Balance enquiry</h4>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success:</strong> @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error:</strong> @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Account number</th>
+                <th>IFSC code</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IFSCCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Balance)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

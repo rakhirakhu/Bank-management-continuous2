@@ -1,0 +1,135 @@
+﻿@model Bank_Management.Models.TransferAmount
+
+@{
+    ViewBag.Title = "Transfer";
+    Layout = "~/Views/Shared/_Layoutuser.cshtml";
+}
+
+<link href="~/CSS/Amount.css" rel="stylesheet" />
+<div id="main-content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Transfer</h4>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success:</strong>  @TempData["SuccessMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>Error</strong> @TempData["ErrorMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+            }
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ToUserId, "User id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ToUserId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ToUserId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, "Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @id = "inputBalance" } })
+                    <span id="errorBalance" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AccountNumber, "Account number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control", @onblur = "validateAccountNumber(this)" } })
+                    @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                    <span id="errorAccountNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IFSCCode, "IFSC code", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IFSCCode, new { htmlAttributes = new { @class = "form-control", @onblur = "validateIFSCCode(this)" } })
+                    @Html.ValidationMessageFor(model => model.IFSCCode, "", new { @class = "text-danger" })
+                    <span id="errorIFSCCode" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToAccountNumber, "To account number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ToAccountNumber, new { htmlAttributes = new { @class = "form-control", @onblur = "validateToAccountNumber(this)" } })
+                    @Html.ValidationMessageFor(model => model.ToAccountNumber, "", new { @class = "text-danger" })
+                    <span id="errorToAccountNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToIFSCCode, "To IFSC code", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ToIFSCCode, new { htmlAttributes = new { @class = "form-control", @onblur = "validateToIFSCCode(this)" } })
+                    @Html.ValidationMessageFor(model => model.ToIFSCCode, "", new { @class = "text-danger" })
+                    <span id="errorToIFSCCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "inputOldPassword", @onblur = "validateOldPassword(this)" })
+                    <span id="errorOldPassword" class="text-danger"></span>
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <center>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Transfer" class="btn btn-outline-success" />
+                    </div>
+                </div>
+            </center>
+        </div>
+    }
+    <script src="~/JAVASCRIPT/Bankaccount.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Add a listener to the form submission
+            document.querySelector("form").addEventListener("submit", function (event) {
+                // Get the value of the amount field
+                var amountValue = document.getElementById("inputBalance").value;
+
+                // Check if the amount is a valid number and within the desired range
+                if (!/^\d+$/.test(amountValue) || parseFloat(amountValue) <= 0 || parseFloat(amountValue) > 50000) {
+                    // Display an error message
+                    document.getElementById("errorBalance").innerText = "Amount must be a  greater than 0 and less than or equal to 50000";
+
+                    // Prevent form submission
+                    event.preventDefault();
+                } else {
+                    // Clear any previous error messages
+                    document.getElementById("errorBalance").innerText = "";
+                }
+            });
+        });
+    </script>
+
+</div>

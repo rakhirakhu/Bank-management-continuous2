@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Bank_Management.Models.BankAccount>
+
+@{
+    ViewBag.Title = "UserBankAccounts";
+    Layout = "~/Views/Shared/_Layoutuser.cshtml";
+}
+
+@*<link href="~/CSS/Balance.css" rel="stylesheet" />*@
+<link href="~/CSS/BalanceEnquiry.css" rel="stylesheet" />
+<div id="main-content">
+    <h4 class="text-center">User bank accounts</h4>&nbsp;&nbsp;&nbsp;
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>User id</th>
+                <th>Account holder name</th>
+                <th>Branch name</th>
+                <th>Account number</th>
+                <th>IFSC code</th>
+                <th>Open date</th>
+                <th>Balance</th>
+              
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                  
+                    @*<td>@Html.DisplayFor(modelItem => item.AccountId)</td> --}}*@
+                    <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AccountHolderName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BranchName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IFSCCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.OpenDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Balance)</td>
+                  
+                    @*<td>@Html.DisplayFor(modelItem => item.Amount)</td> --}}*@
+                    <td>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

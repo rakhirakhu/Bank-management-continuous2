@@ -1,0 +1,107 @@
+﻿@model Bank_Management.Models.registeruser
+
+@{
+    ViewBag.Title = "UserDetails";
+    Layout = "~/Views/Shared/_Layoutuser.cshtml";
+}
+<link href="~/CSS/Userdetailsuser.css" rel="stylesheet" />
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success:</strong>  @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error</strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+<div class="container">
+    @*<h2 class="text-center">User Details</h2>*@
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Bank id</th>
+                                <td>@Model.BankId</td>
+                            </tr>
+                            <tr>
+                                <th>First name</th>
+                                <td>@Model.FirstName</td>
+                            </tr>
+                            <tr>
+                                <th>Last name</th>
+                                <td>@Model.LastName</td>
+                            </tr>
+                            <tr>
+                                <th>Date of birth</th>
+                                <td>@Model.DOB.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td>@Model.Gender</td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td>@Model.Phone</td>
+                            </tr>
+                            <tr>
+                                <th>E-mail</th>
+                                <td>@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>@Model.Address</td>
+                            </tr>
+                            <tr>
+                                <th>State</th>
+                                <td>@Model.State</td>
+                            </tr>
+                            <tr>
+                                <th>City</th>
+                                <td>@Model.City</td>
+                            </tr>
+                            <tr>
+                                <th>Username</th>
+                                <td>@Model.Username</td>
+                            </tr>
+                            <!-- If you decide to show the password, uncomment the following lines -->
+                            <!--
+            <tr>
+                <th>Password</th>
+                <td>@Model.Password</td>
+            </tr>
+            -->
+                        </tbody>
+                    </table>
+                    
+                    @if (Model.ProfileImage != null)
+                    {
+                        <div class="text-center mt-3">
+                            <img src="data:image;base64,@Convert.ToBase64String(Model.ProfileImage)" alt="Profile Image" class="img-thumbnail" />
+                        </div>
+                    }
+                <center>
+                    @Html.ActionLink("Edit", "Edit", null, new { @class = "edit-button" })
+                </center>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Bank_Management.Models.BalanceEnquiryModel>
+
+@{
+    ViewBag.Title = "AllUsersBalance";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<link href="~/CSS/vieww.css" rel="stylesheet" />*@
+<link href="~/CSS/Userdetail Admin.css" rel="stylesheet" />
+<div id="main-content" class="container">
+    <h2>All users balance</h2>
+    <input type="text" id="searchBar" placeholder="Search...">
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>User id</th>
+                <th>Account number</th>
+                <th>IFSC code</th>
+                <th>Balance</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IFSCCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Balance)</td>
+                    <td>
+                        @*{{-- Uncomment the lines below if you want to include action links --}}
+                            {{-- @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary" }) | --}}
+                            {{-- @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-info" }) | --}}
+                            {{-- @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-delete" }) --}}*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/JAVASCRIPT/Searchbar.js"></script>

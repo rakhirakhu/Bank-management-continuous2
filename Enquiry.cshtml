@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Bank_Management.Models.EnquiryModel>
+
+@{
+    ViewBag.Title = "Enquiry";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<link href="~/CSS/vieww.css" rel="stylesheet" />*@
+<link href="~/CSS/Userdetail Admin.css" rel="stylesheet" />
+<div class="container">
+    <h2>Enquiry</h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Enquiry id</th>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>Comment</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.EnquiryId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Comment)</td>
+                    <td>
+                        @*{{-- Uncomment the lines below if you want to include action links --}}
+                        {{-- @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary" }) | --}}
+                        {{-- @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-info" }) | --}}
+                        {{-- @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-delete" }) --}}*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

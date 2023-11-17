@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Bank_Management.Models.Transaction>
+
+@{
+    ViewBag.Title = "Usertransaction";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/CSS/Userdetail Admin.css" rel="stylesheet" />
+<div class="container">
+    <h2>User transaction</h2>
+    <input type="text" id="searchBar" placeholder="Search...">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>User id</th>
+                <th>Transaction type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Account number</th>
+                <th>IFSC code</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IFSCCode)</td>
+                    <td>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/JAVASCRIPT/Searchbar.js"></script>
+

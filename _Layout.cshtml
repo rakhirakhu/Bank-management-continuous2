@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank management</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/CSS/home1.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <!-- Your additional styles if any -->
+
+
+
+
+
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-box">
+
+            <div class="logo">
+                <img src="~/images/logo.png" alt="logo" />
+            </div>
+            <nav>
+                <ol>
+                    <li class="special"><a href="@Url.Action("Login", "Home")">Login</a>
+                    <li>
+                    <li class="special"><a href="@Url.Action("Registration", "Home")">Registration</a></li>
+
+                </ol>
+                <ul>
+
+                    
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About us</a></li>
+
+                    <li><a href="@Url.Action("Contact", "Home")">Contact us</a></li>
+                </ul>
+            </nav>
+            </div>
+    </header>
+   
+
+    <!-- Main Content Goes Here -->
+    <div id="main-content">
+    
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logos">
+
+            <img src="~/images/facebook.png" alt="logos" />
+            <img src="~/images/twitter.png" alt="logos" />
+            <img src="~/images/linkedin.png" alt="logos" />
+            <img src="~/images/whatsapp.png" alt="logos" />
+            <img src="~/images/instagram.png" alt="logos" />
+            <img src="~/images/mail-inbox-app.png" alt="logos" />
+            <img src="~/images/youtube.png" alt="logos" />
+            <img src="~/images/print.png" alt="logos" />
+        </div>&nbsp;&nbsp;
+        <h6>  &copy;  2023 The Federal Bank Limited</h6> 
+
+         <h6>  Last updated on : 09 Oct 2023</h6>&nbsp;
+         <p>
+             Disclaimer: We use cookies to provide a user-friendly experience. By continuing to browse this site, it shall be deemed that you have accorded your consent to us for the use of cookies and accepted the terms of our cookie policy. To view our cookie policy
+         </p>
+    </footer>
+  
+</body>
+</html>

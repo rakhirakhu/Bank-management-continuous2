@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layoutuser.cshtml";
+}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Index</title>
+    <link href="~/CSS/userindex.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Start your savings journey with us, anywhere, anytime, instantly!</h2>
+    
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 2 goes here.">
+                    <img src="~/images/indexxx2.jpg" alt="Image 2" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>Celesta</h3>
+                        <p>Savings priority segment</p>
+                    </div>
+                </a>&nbsp;&nbsp;
+                <p>Taking the meaning of banking relationship to the next level, we welcome you to enjoy the enchanting bouquet of exclusive privileges that compliment your lifestyle.</p>
+            </div>
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 2 goes here.">
+                    <img src="~/images/about3.jpg" alt="Image 2" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>Mahila mitra plus</h3>
+                        <p>Savings for women</p>
+                    </div>
+                </a>&nbsp;&nbsp;
+                <p>A savings account exclusively for women, endowed with exciting features like complimentary insurance, special rates on loans, exciting debit card offers and much more!</p>
+            </div>
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 2 goes here.">
+                    <img src="~/images/indexx3.jpg" alt="Image 2" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>Fed salary</h3>
+                        <p>Savings for salaries</p>
+                    </div>
+                </a>&nbsp;&nbsp;
+                <p>A tailor made zero-balance salary account for you with a host of benefits such as complimentary insurance, exciting debit card offers and much more!</p>
+
+            </div>
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 2 goes here.">
+                    <img src="~/images/about5.jpg" alt="Image 2" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>Fed salary premium</h3>
+                        <p>Savings for premium salary</p>
+                    </div>
+                </a>
+                <p>A premium zero balance salary account that comes with a bouquet of benefits such as complimentary insurance, lounge access, exciting debit card offers. special rates on loans and much more!</p>
+            </div>
+
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 1 goes here.">
+                    <img src="~/images/about1.jpg" alt="Image 1" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>Fed selfie</h3>
+                        <p>Zero balance savings account</p>
+                    </div>
+                </a>&nbsp;&nbsp;
+                <p>Introducing your Digital Savings Companion—a zero-balance savings account you can set up in less than 5 minutes. Begin your journey to financial security now!</p>
+            </div>
+
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 2 goes here.">
+                    <img src="~/images/about7.jpg" alt="Image 2" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>Imperio</h3>
+                        <p>Savings priority segment</p>
+                    </div>
+                </a>&nbsp;&nbsp;
+                <p>Imperio offers you an impeccable banking service with a treasure trove of features designed exclusively for you. Join the journey to a privileged life!</p>
+            </div>
+
+
+
+            <div class="col-md-6 img-container">
+                <a href="#" class="image-link" data-description="Description for Image 2 goes here.">
+                    <img src="~/images/indexx1.jpg" alt="Image 2" class="img-fluid">
+                    <div class="img-overlay">
+                        <h3>SB plus</h3>
+                        <p>Savings base segment</p>
+                    </div>
+                </a>&nbsp;&nbsp;
+                <p>A savings account designed for the dynamic consumer with exciting features like contactless debit card, digital banking channels, a plethora of debit card offers and much more!</p>
+            </div>
+
+
+            <div class="con-image">
+                <img src="~/images/indexback.jpg" />
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageLinks = document.querySelectorAll('.image-link');
+            const modalImage = document.getElementById('modalImage');
+            const modalDescription = document.getElementById('modalDescription');
+            const imageModalLabel = document.getElementById('imageModalLabel');
+
+            imageLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    const imageDescription = link.getAttribute('data-description');
+
+                    modalImage.src = link.querySelector('img').src;
+                    modalImage.alt = imageDescription;
+                    modalDescription.textContent = imageDescription;
+                    imageModalLabel.textContent = link.querySelector('h3').textContent;
+
+                    // Show the modal
+                    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+                    modal.show();
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

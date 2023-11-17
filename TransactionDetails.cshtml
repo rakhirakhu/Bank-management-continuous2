@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Bank_Management.Models.Transaction>
+
+@{
+    ViewBag.Title = "TransactionDetails";
+    Layout = "~/Views/Shared/_Layoutuser.cshtml";
+}
+<link href="~/CSS/BalanceEnquiry.css" rel="stylesheet" />
+<div class="container">
+    <center>
+        <h2>Transaction details</h2>
+
+    </center>
+    <input type="text" id="searchBar" placeholder="Search...">
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success:</strong> @TempData["SuccessMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span>&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error</strong> @TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span>&times;</span>
+            </button>
+        </div>
+    }
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+
+                <th>Transaction type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Account number</th>
+                <th>IFSC code</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    @*<td>@Html.DisplayFor(modelItem => item.UserId)</td>*@
+                    <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IFSCCode)</td>
+                    <td>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/JAVASCRIPT/Searchbar.js"></script>
